@@ -1,3 +1,4 @@
+
 import NoteCard from './NoteCard.jsx';
 import { useState } from 'react';
 
@@ -14,6 +15,18 @@ function Notes() {
       body: "Practice writing one handler for many inputs."
     }
   ]);
+
+  const [form, setForm] = useState({
+    title: "",
+    body: ""
+  });
+
+  function handleChange(event) {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    });
+  }
 
   return (
     <div className="grid min-h-screen grid-cols-[420px_1fr]">
@@ -41,12 +54,16 @@ function Notes() {
           <input
             name="title"
             placeholder="Title"
+            value={form.title}
+            onChange={handleChange}
             className="h-[52px] w-full border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
           />
 
           <textarea
             name="body"
             placeholder="Write your note"
+            value={form.body}
+            onChange={handleChange}
             className="h-[120px] w-full resize-none border border-[#e6e6e6] px-4 py-3 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
           />
 
