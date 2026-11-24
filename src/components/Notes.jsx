@@ -31,6 +31,14 @@ import { useState, useEffect } from 'react';
       localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
+    useEffect(() => {
+      const id = setTimeout(() => {
+        localStorage.setItem("draft", JSON.stringify(form));
+      }, 1000);
+
+      return () => clearTimeout(id);
+    }, [form]);
+
     
   function handleChange(event) {
     setForm({
